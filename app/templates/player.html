@@ -1,0 +1,46 @@
+<div class='player-header player-overlay'>
+
+<% if( mode != 'standalone' && chromeless == false ) { %> 
+	<a id='preview-close' class='close pull-right' href='' >&times;</a>
+<% } %>
+
+<% if( mode != 'embed' && fullscreenEnabled && chromeless == false) { %>
+	<a href='#' class='fullscreen pull-right' target='blank'><i class='zicon-go-fullscreen'></i></a>
+<% } %>
+
+<% if( mode != 'editor' && social  && chromeless == false) { %>
+	<a href='https://twitter.com/intent/tweet?original_referer=<%= url_base %><%= id %>&text=Zeega%20Project%3A%20<%= title %>&url=<%= url_base %><%= id %>' class='share-twitter pull-right' target='blank'><i class='zitem-twitter zitem-30 loaded'></i></a>
+	<a href='http://www.facebook.com/sharer.php?u=<%= url_base %><%= id %>' class='share-facebook pull-right' target='blank'><i class='zitem-facebook zitem-30 loaded'></i></a>
+<% } %>
+
+</div><!-- .player-header -->
+
+<% if( branding && chromeless == false ) { %>
+<div class='player-zeega-icon player-overlay'><a href='<%= url_base %>user/<%= user_id %>' target='blank' class='zeega-user'><i class='zitem-zeega00 zitem-30 loaded'></i></a></div>
+<% } %>
+
+<% if( chromeless == false ) { %>
+	<div id='preview-left' class='hidden preview-nav-arrow preview-nav'>
+		<div class='arrow-background'></div>
+	</div>
+	<div id='preview-right' class='hidden preview-nav-arrow preview-nav'>
+		<div class='arrow-background'></div>
+	</div>
+
+<% } %>
+
+<div id='preview-media' ></div>
+<div id='loader-tray' class=''></div>
+
+<% if( navbar_bottom && chromeless == false ) { %>
+	<div class='zeega-player-menu menu-bottom'>"
+		<div id='citation-tray' class='player-overlay'></div>
+	<% if( playerCitation ) { %>}
+		<div id='player-citation' class='player-overlay'>
+		<% if( playerCitation ) { %>
+			<div class='player-citation'><h3 class='title'><%= title %></h3></div>
+		<% } %>
+		</div>			
+	<% } %>
+<% } %>
+

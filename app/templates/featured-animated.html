@@ -1,0 +1,8 @@
+<a href='/featured/<%= featured_id %>'>
+	<% if( _.include(tags, 'pt_radiostory') ){ %><i class='PT-featured featured-icon'></i><% } %>
+	<% if( thumbnail_url ) {%>
+		<div class='item-title' style='background:url(assets/img/gifs/<%= thumbnail_url %>);background-size:100% auto;'><h1><%= title %></h1></div>
+	<% } else { %>
+		<div class='item-title'><h1><%= title %></h1></div>
+	<% } %>
+</a>

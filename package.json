@@ -1,0 +1,9 @@
+{
+  "name":"planet-takeout",
+  "version":"0.0.1",
+
+  "dependencies":{
+
+    "grunt-remove-logging":">=0.0.2"
+  }
+}
