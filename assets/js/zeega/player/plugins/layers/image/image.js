@@ -56,7 +56,7 @@ function(Zeega, Backbone, _Layer){
 
 	Layer.Image.Visual = _Layer.Visual.extend({
 		
-		template : '<img src="<%= attr.uri %>" width="100%"/>',
+		template : '<img id="image-<%= id %>"  width="100%"/>',
 
 		render : function()
 		{
@@ -64,14 +64,41 @@ function(Zeega, Backbone, _Layer){
 			return this;
 		},
 		
-		verifyReady : function()
+		player_onPreload : function()
 		{
-			var _this = this;
-			var img = this.$el.imagesLoaded();
-			img.done(function(){ _this.model.trigger('ready',_this.model.id) });
-			img.fail(function(){ _this.model.trigger('error',_this.model.id) });
+
+			var _this=this;
+			var supportsCanvas = !!document.createElement('canvas').getContext;
+			if (supportsCanvas) {
+				var canvas = document.createElement('canvas'), 
+				context = canvas.getContext('2d'), 
+				imageData, px, length,  gray, 
+				img = new Image();
+				
+				img.onload=function(){
+					canvas.width = img.width;
+					canvas.height = img.height;
+					context.drawImage(img, 0, 0);
+					imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+					px = imageData.data;
+					length = px.length;
+				
+					for (var i = 0; i < length; i += 4) {
+						gray = px[i] * .3 + px[i + 1] * .59 + px[i + 2] * .11;
+						px[i] = px[i + 1] = px[i + 2] = gray;
+					}
+							
+					context.putImageData(imageData, 0, 0);
+
+					$('#image-'+_this.model.id).attr('src',canvas.toDataURL());
+					_this.model.trigger('ready',_this.model.id);
+				}
+				img.crossOrigin='';
+				img.src = this.model.get('attr').uri;
+			} else {
+				$('#image-'+this.model.id).attr('src',this.model.get('attr').uri);
+			}
 		}
-		
 	});
 
 	return Layer;
