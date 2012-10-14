@@ -127,7 +127,7 @@ define(['layerModel', 'layerView'], function(){
 			return this;
 		},
 		
-		onLayerEnter : function()
+		editor_onLayerEnter : function()
 		{
 			
 			var div = $(this.el).find('.cloud-map').get(0);
@@ -164,7 +164,7 @@ define(['layerModel', 'layerView'], function(){
 		},
 		
 		
-		onPreload : function()
+		player_onPreload : function()
 		{
 
 			var div = $(this.el).find('.cloud-map').get(0);

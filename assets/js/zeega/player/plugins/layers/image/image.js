@@ -64,7 +64,7 @@ function(Zeega, Backbone, _Layer){
 			return this;
 		},
 		
-		verifyReady : function()
+		player_onPreload : function()
 		{
 			var _this = this;
 			var img = this.$el.imagesLoaded();
