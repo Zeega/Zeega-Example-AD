@@ -90,7 +90,7 @@ function(Zeega, Backbone, _Layer){
 							
 					context.putImageData(imageData, 0, 0);
 
-					$('#image-'+_this.model.id).attr('src',canvas.toDataURL());
+					_this.$el.find('img').attr('src',canvas.toDataURL());
 					_this.model.trigger('ready',_this.model.id);
 				}
 				img.crossOrigin='';
