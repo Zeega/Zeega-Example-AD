@@ -138,11 +138,10 @@ define(['layerModel', 'layerView'], function(){
 		  		zoomControl:false,
 		  		doubleClickZoom:false
 		  	}
-		  	console.log(mapOptions);
-		  	console.log(this.attr);
+		  	
 		  	
 			this.map = new L.Map(div,mapOptions);
-			console.log(this.attr);
+
 			this.map.setView(this.latlng, this.attr.attributes.zoom).addLayer(this.tileLayer);
 			
 			//Save position and zoom level of map
@@ -167,11 +166,8 @@ define(['layerModel', 'layerView'], function(){
 		
 		onPreload : function()
 		{
-			console.log('oh yeah');
-			console.log(this.el);
-			console.log('oh yeah');
+
 			var div = $(this.el).find('.cloud-map').get(0);
-		  console.log(this.el);
 			this.map = new L.Map(div,{minZoom: this.attr.attributes.minzoom,maxZoom: this.attr.attributes.maxzoom, scrollWheelZoom:false,zoomControl:false,doubleClickZoom:false});
 			this.map.setView(this.latlng, this.attr.attributes.zoom).addLayer(this.tileLayer);
 			
